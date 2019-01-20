@@ -5,10 +5,10 @@
 'use strict';
 
 const router = require('koa-router')(); // router middleware for koa
-const dbcompare = require('../models/dbcompare');
+// const dbcompare = require('../models/dbcompare');
 
 
-router.get('/', dbcompare.home);
+// router.get('/', dbcompare.home);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 

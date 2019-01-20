@@ -32,6 +32,9 @@
     "bunyan": "^1.8.12",
     "dotenv": "^6.2.0",
     "koa": "^2.6.2",
+    "koa-body": "^4.0.6",
+    "koa-bunyan": "^1.0.2",
+    "koa-router": "^7.4.0",
     "mysql2": "^1.6.4"
   },
   "devDependencies": {
