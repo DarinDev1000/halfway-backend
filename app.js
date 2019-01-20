@@ -26,15 +26,6 @@ const app = new Koa();
 app.env = process.env.ENVIRONMENT;
 
 // MySQL connection pool (set up on app initialization)
-// const config = {
-//   host: process.env.DB_HOST,
-//   port: process.env.DB_PORT || 3306,
-//   user: process.env.DB_USER,
-//   password: process.env.DB_PASSWORD,
-//   database: process.env.DB_DATABASE,
-//   charset: 'utf8mb4',
-// };
-// MySQL connection pool (set up on app initialization)
 const config = {
   host: process.env.DB_COMPARE_HOST,
   port: process.env.DB_COMPARE_PORT || 3306,
@@ -89,7 +80,7 @@ app.use(async function (ctx, next) {
   await next();
 });
 
-// handle thrown or uncaught exceptions anywhere down the line
+// handle thrown or uncaught exceptions anywhere down the line`
 app.use(async function handleErrors(ctx, next) {
   try {
     await next();

@@ -156,7 +156,7 @@ module.exports = exports = {
     'no-this-before-super': ERROR,
     'no-var': WARN,
     'object-shorthand': [WARN, 'never'],
-    'prefer-arrow-callback': WARN,
+    'prefer-arrow-callback': OFF,
     'prefer-spread': WARN,
     'prefer-template': 0,
     'require-yield': ERROR,
