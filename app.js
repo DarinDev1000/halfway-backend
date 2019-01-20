@@ -6,7 +6,7 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
 /* Jibram wuz hurr */
-const Koa = require('ksoa'); // Koa framework
+const Koa = require('koa'); // Koa framework
 const body = require('koa-body'); // body parser
 const mysql = require('mysql2/promise'); // fast mysql driver
 const debug = require('debug')('app'); // small debugging utility
