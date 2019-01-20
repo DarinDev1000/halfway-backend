@@ -1,0 +1,56 @@
+{
+  "name": "halfway-backend",
+  "version": "0.0.1",
+  "description": "The node server code for Halfway Mapping Project",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "commit-wizard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarinDev1000/halfway-backend.git"
+  },
+  "keywords": [
+    "halfway",
+    "mapping",
+    "driving",
+    "meetup",
+    "route"
+  ],
+  "author": "Darin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DarinDev1000/halfway-backend/issues"
+  },
+  "homepage": "https://github.com/DarinDev1000/halfway-backend#readme",
+  "dependencies": {
+    "bunyan": "^1.8.12",
+    "dotenv": "^6.2.0",
+    "koa": "^2.6.2",
+    "mysql2": "^1.6.4"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "nodemon": "^1.18.9",
+    "pre-git": "^3.17.1"
+  },
+  "release": {
+    "analyzeCommits": "simple-commit-message"
+  },
+  "config": {
+    "pre-git": {
+      "enabled": "true",
+      "_comment": "commit-msg: simple",
+      "pre-commit": [],
+      "pre-push": [],
+      "post-commit": [],
+      "post-checkout": [],
+      "post-merge": []
+    }
+  }
+}
