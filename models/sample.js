@@ -15,7 +15,25 @@ class Sample {
     try {
       const json = {
         message: "This is a sample message",
-        format: "json"
+        format: "json",
+        users: [
+            {
+              id: 1658,
+              name: 'test Name'
+            },
+            {
+              id: 6578,
+              name: 'some Name'
+            },
+            {
+              id: 9823,
+              name: 'the saying'
+            },
+            {
+              id: 1572,
+              name: 'api'
+            }
+          ]
         };
       ctx.body = json;
     } catch (e) {

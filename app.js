@@ -10,7 +10,7 @@ const Koa = require('koa'); // Koa framework
 const body = require('koa-body'); // body parser
 const mysql = require('mysql2/promise'); // fast mysql driver
 const debug = require('debug')('app'); // small debugging utility
-// const cors = require('koa2-cors'); // CORS for Koa 2
+const cors = require('koa2-cors'); // CORS for Koa 2
 // const jwt = require('jsonwebtoken'); // JSON Web Token implementation
 const bunyan = require('bunyan'); // logging
 const koaLogger = require('koa-bunyan'); // logging
@@ -116,7 +116,7 @@ app.use(async function handleErrors(ctx, next) {
   }
 });
 
-// app.use(cors());
+app.use(cors());
 
 // set up MySQL connection - App DB
 app.use(async function mysqlConnection(ctx, next) {
