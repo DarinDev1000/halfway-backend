@@ -17,7 +17,7 @@ Requirements:
 
 ### Steps
 
-1. Install Node.js version 8.x (this also installs npm)
+1. Install Node.js version 10.x LTS (this also installs npm)
     * With package manager: https://nodejs.org/en/download/package-manager/
     * Direct download: https://nodejs.org/en/#download
     * All versions: https://nodejs.org/en/download/
