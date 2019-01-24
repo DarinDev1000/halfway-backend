@@ -15,10 +15,7 @@ const cors = require('koa2-cors'); // CORS for Koa 2
 const bunyan = require('bunyan'); // logging
 const koaLogger = require('koa-bunyan'); // logging
 // const views = require('koa-views'); // koa template rendering middleware
-// const Twig = require('twig'); // twig php html templates
-// const twig = Twig.twig;
 // const serve = require('koa-static-server');
-// const render = require('koa-views-render');
 
 require('dotenv').config(); // loads environment variables from .env file (if available - eg dev env)
 
@@ -169,48 +166,7 @@ app.use(koaLogger(logger, {}));
 //   await next();
 // });
 
-// const options = {
-//   extensions: [
-//     {
-//       file: '/Users/darin/Documents/node/comparedbstructure/views/index.twig',
-//       func: 'myTwigExtension'
-//     }
-//   ]
-// };
-
 app.use(require('./routes/routes-root.js'));
-// app.use(require('./routes/routes-dbcompare.js'));
-//app.use(require('./routes/routes-auth.js'));
-//app.use(require('./routes/routes-util.js'));
-
-// remaining routes require JWT auth (obtained from /auth and supplied in bearer authorization header)
-
-// app.use(async function verifyJwt(ctx, next) {
-//   if (!ctx.header.authorization) ctx.throw(401, 'Authorisation required');
-//   const [ scheme, token ] = ctx.header.authorization.split(' ');
-//   if (scheme != 'Bearer') ctx.throw(401, 'Invalid authorisation');
-//
-//   try {
-//     const payload = jwt.verify(token, process.env.JWT_KEY); // throws on invalid token
-//     // valid token: accept it...
-//
-//     let sqla = `select status from user where id = ${payload.id}`;
-//     const [[res]] = await global.db.query(sqla);
-//
-//     if (res.status === 0){
-//       ctx.body = "Account Disabled"
-//       throw({ status: 401, message: 'Account Disabled' });
-//     }
-//
-//     ctx.state.user = payload; // for user id  to look up user details
-//   } catch (e) {
-//     if (e.message === 'invalid token') ctx.throw(401, 'Invalid JWT'); // Unauthorized
-//     ctx.throw(e.status || 401, e.message); // Internal Server Error
-//   }
-//
-//   await next();
-//
-// });
 
 /* create server - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
@@ -218,7 +174,7 @@ app.listen(process.env.PORT || 3000);
 console.info(
   `${process.version} listening on port ${process.env.PORT || 3000} (${
     app.env
-  }/${/*config.database*/"database"})`
+  }/${config.database})`
 );
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
