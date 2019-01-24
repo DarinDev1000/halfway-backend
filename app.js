@@ -28,11 +28,11 @@ app.env = process.env.ENVIRONMENT;
 
 // MySQL connection pool (set up on app initialization)
 const config = {
-  host: process.env.DB_COMPARE_HOST,
-  port: process.env.DB_COMPARE_PORT || 3306,
-  user: process.env.DB_COMPARE_USER,
-  password: process.env.DB_COMPARE_PASSWORD,
-  database: process.env.DB_COMPARE_DATABASE,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT || 3306,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
   charset: 'utf8mb4',
 };
 
