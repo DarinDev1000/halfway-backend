@@ -1,3 +1,4 @@
+import middleMVP from "../services/middle.service"
 
 class Sample {
 
