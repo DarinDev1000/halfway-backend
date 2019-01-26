@@ -7,7 +7,7 @@ class YelpApi {
                 ctx.params.lat, 
                 ctx.params.long, 
                 ctx.params.term
-            )            
+            );
         } catch (e) {
             console.log(e);
             throw e;
