@@ -1,9 +1,8 @@
 const axios = require("axios");
-const polyUtil = require('polyline-encoded');
 
 class middle {
 
-    static async axiosTest() {
+    static async axiosTest(ctx) {
         // Function expects two addresses in json form like this:
         const DMKey = 'AIzaSyDTR1tSdwSPeBMEPc_pmhDvTyzNstDly8g';
         const myLocation = '5200 Lake Rd. Merced, California';
@@ -11,11 +10,13 @@ class middle {
     
         const map = await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${myLocation}&destination=${theirLocation}&key=${DMKey}`);
         const DMresponse = await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${myLocation}&destinations=${theirLocation}&key=${DMKey}`);
-
-        const encodedPoly = map.data.routes[0].overview_polyline;
-        const decodedPoly =  await polyUtil.decode(encoded);
-        const distance = DMresponse.data.rows[0].elements[0].distance.value;
-        console.log(decodedPoly);
+        
+        const distance = DMresponse.data.rows[0].elements[0].distance.value; // Make sure the distance here matches real distances.
+        const encoded = map.data.routes[0].overview_polyline;
+        console.log(encoded)
+        console.log(distance)
+        //const polyline = polyUtil.decode(encoded);
+        //console.log(polyline)
         //var test = poly.GetPointAtDistance(distance * 0.5)
     }
     
