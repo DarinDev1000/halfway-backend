@@ -167,6 +167,7 @@ app.use(koaLogger(logger, {}));
 // });
 
 app.use(require('./routes/routes-root.js'));
+app.use(require('./routes/routes-address.js'));
 
 /* create server - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
