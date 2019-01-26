@@ -1,5 +1,15 @@
+//const middleMVP = require("../services/middle.service");
 
 class Sample {
+
+  // static async middleInit(ctx) {
+  //   try {
+  //     const whatever = await middleMVP.axiosTest();
+  //   } catch (e) {
+  //     console.log(e);
+  //     throw e;
+  //   }
+  // }
 
   static async sampleFunction(ctx) {
     try {
@@ -10,7 +20,7 @@ class Sample {
       throw e;
     }
   }
-
+  
   static async sampleJson(ctx) {
     try {
       const json = {
