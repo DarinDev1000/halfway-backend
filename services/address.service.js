@@ -15,6 +15,20 @@ class AddressService {
     }
   }
 
+  static async geographCenter(lat1, long1, lat2, long2) {
+    try {
+        const midLat = (lat1 + lat2) / 2;
+        const midLong = (long1 + long2) / 2;
+        return {
+          midLatitude: midLat,
+          midLongitude: midLong
+        };
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  }
+
 }
 
 module.exports = AddressService;

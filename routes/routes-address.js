@@ -9,6 +9,7 @@ const address = require('../models/address');
 
 
 router.post('/submitAddress', address.submitAddress);
+router.post('/getGeographicCenter', address.getGeographicCenter);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 

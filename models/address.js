@@ -2,6 +2,8 @@
 
 const axios = require("axios");
 
+const AddressService = require('../services/address.service');
+
 class Address {
 
   static async submitAddress(ctx) {
@@ -22,6 +24,34 @@ class Address {
       // console.log(geometry.location);
       
       ctx.body = geometry.location;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  }
+
+  static async getGeographicCenter(ctx) {
+    try {
+      const myAddress = ctx.request.body.myAddress;
+      const myZip = ctx.request.body.myZip;
+      const theirAddress = ctx.request.body.theirAddress;
+      const theirZip = ctx.request.body.theirZip;
+
+      const myRequestURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${myAddress}+${myZip}&key=${process.env.GOOGLE_MAPS_API}`;
+      const theirRequestURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${theirAddress}+${theirZip}&key=${process.env.GOOGLE_MAPS_API}`;
+      const myResults = await axios.get(myRequestURL);
+      const theirResults = await axios.get(theirRequestURL);
+      const myLatLong = myResults.data.results[0].geometry.location;
+      const theirLatLong = theirResults.data.results[0].geometry.location;
+
+      console.log(myLatLong);
+      console.log(theirLatLong);
+
+      const geographicCenter = await AddressService.geographCenter(myLatLong.lat, myLatLong.lng, theirLatLong.lat, theirLatLong.lng);
+
+      console.log('geographic center point:  ', geographicCenter);
+
+      ctx.body = geographicCenter;
     } catch (e) {
       console.log(e);
       throw e;
