@@ -6,7 +6,7 @@ class middle {
 
     static async axiosTest(ctx) {
         // Function expects two addresses in json form like this:
-        const DMKey = 'AIzaSyDTR1tSdwSPeBMEPc_pmhDvTyzNstDly8g';
+        const DMKey = process.env.GOOGLE_MAPS_API;
         const myLocation = '5200 Lake Rd. Merced, California';
         const theirLocation = '4701 Stoddard Rd. Modesto, California';
     
