@@ -12,6 +12,23 @@ class YelpApi {
             console.log(e);
             throw e;
         }
+    }
+
+    static async getBusinessResultPost(ctx) {
+        try {
+            const latitude = ctx.request.body.latitude;
+            const longitude = ctx.request.body.longitude;
+            const terms = ctx.request.body.terms;
+            console.log(terms);
+            ctx.body = await yelpService.searchBusinessResultPost(
+                latitude,
+                longitude, 
+                terms
+            );
+        } catch (e) {
+            console.log(e);
+            throw e;
+        }
 
     }
 }
