@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/DarinDev1000/halfway-backend#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bunyan": "^1.8.12",
     "dotenv": "^6.2.0",
     "koa": "^2.6.2",
