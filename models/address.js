@@ -3,6 +3,7 @@
 const axios = require("axios");
 
 const AddressService = require('../services/address.service');
+const YelpService = require('../services/yelp.service');
 
 class Address {
 
@@ -51,7 +52,16 @@ class Address {
 
       console.log('geographic center point:  ', geographicCenter);
 
-      ctx.body = geographicCenter;
+      // Filter locations
+      let categories = [];
+      if (ctx.request.body.categories) {
+        categories = ctx.request.body.categories;
+      } 
+      const filteredLocations = await YelpService.searchBusinessResultPost(geographicCenter.midLatitude, geographicCenter.midLongitude, categories);
+      console.log(filteredLocations.businesses[0]);
+      
+
+      ctx.body = filteredLocations.businesses[0];
     } catch (e) {
       console.log(e);
       throw e;

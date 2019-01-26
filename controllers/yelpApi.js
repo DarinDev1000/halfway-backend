@@ -1,4 +1,4 @@
-const yelpService = require('../services/yelp');
+const yelpService = require('../services/yelp.service');
 
 class YelpApi {
     static async getBusinessResult(ctx) {
