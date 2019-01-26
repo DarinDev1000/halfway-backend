@@ -1,4 +1,6 @@
-const axios = require("axios");
+const epoly = require("../services/epoly.service");
+const axios = require('axios');
+const polyline = require('google-polyline')
 
 class middle {
 
@@ -10,15 +12,16 @@ class middle {
     
         const map = await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${myLocation}&destination=${theirLocation}&key=${DMKey}`);
         const DMresponse = await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${myLocation}&destinations=${theirLocation}&key=${DMKey}`);
-        
+        //
         const distance = DMresponse.data.rows[0].elements[0].distance.value; // Make sure the distance here matches real distances.
-        const encoded = map.data.routes[0].overview_polyline;
-        console.log(encoded)
-        console.log(distance)
-        //const polyline = polyUtil.decode(encoded);
-        //console.log(polyline)
-        //var test = poly.GetPointAtDistance(distance * 0.5)
+        const encoded = map.data.routes[0].overview_polyline.points;
+        const decoded = polyline.decode(encoded)
+        console.log(decoded)
+
+        const test = poly.GetPointAtDistance(distance * 0.5)
+        
     }
+
     
 }
 
