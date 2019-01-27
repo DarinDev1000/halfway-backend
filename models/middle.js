@@ -1,4 +1,4 @@
-const epoly = require("../services/epoly.service");
+// const epoly = require("../services/epoly.service");
 const axios = require('axios');
 const polyline = require('google-polyline');
 
@@ -15,13 +15,39 @@ class middle {
         //
         const distance = (DMresponse.data.rows[0].elements[0].distance.value) / 1000; // Make sure the distance here matches real distances.
         const encoded = map.data.routes[0].overview_polyline.points;
-        const decoded = polyline.decode(encoded)
+        const decoded = polyline.decode(encoded);
         // console.log(decoded);
 
-        // const test = poly.GetPointAtDistance(distance * 0.5)
+        // const test = poly.GetPointAtDistance(distance * 0.5);
         const middleLocation = await middle.calculateMiddle(ctx, distance, decoded);
 
         ctx.body = middleLocation;
+    }
+
+    static async getRouteMiddle(ctx, myLocation, theirLocation) {
+        // Function expects two addresses in json form like this:
+        const DMKey = process.env.GOOGLE_MAPS_API;
+        // const myLocation = '5200 Lake Rd. Merced, California';
+        // const theirLocation = '4701 Stoddard Rd. Modesto, California';
+    
+        const map = await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${myLocation}&destination=${theirLocation}&key=${DMKey}`);
+        const DMresponse = await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${myLocation}&destinations=${theirLocation}&key=${DMKey}`);
+        //
+        const distance = (DMresponse.data.rows[0].elements[0].distance.value) / 1000; // Make sure the distance here matches real distances.
+        const encoded = map.data.routes[0].overview_polyline.points;
+        const decoded = polyline.decode(encoded);
+        // console.log(decoded);
+
+        // const test = poly.GetPointAtDistance(distance * 0.5);
+        const middleLocation = await middle.calculateMiddle(ctx, distance, decoded);
+
+        console.log('middle location  ', middleLocation);
+
+        // return middleLocation;
+        return {
+            midLatitude: middleLocation.midLat,
+            midLongitude: middleLocation.midLong
+          };
     }
 
     static async calculateMiddle(ctx, distance, decoded) {
@@ -41,11 +67,15 @@ class middle {
             // console.log(mDistance);
             index++;
         }
-        console.log(decoded[index][0], decoded[index][1]);
-
+        // console.log('skjd;fhjkasdhflkj ', decoded[index][0], decoded[index][1]);
+        return {
+            "midLat": decoded[index][0], 
+            "midLong": decoded[index][1]
+        };
         // const test = await middle.approxLatLongDistance( 37.36587, -120.42483, 37.3659, -120.42506);
-        const test = await middle.getDistanceFromLatLonInKm( 37.36587, -120.42483, 37.3659, -120.42506);
-        return test;
+        // const test = await middle.getDistanceFromLatLonInKm( 37.36587, -120.42483, 37.3659, -120.42506);
+        // return test;
+
     }
 
     static async latLongDistance(lat1, lon1, lat2, lon2) {

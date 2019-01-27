@@ -20,12 +20,13 @@ class Yelp {
 
     static async searchBusinessResultPost(latitude, longitude, categories) {
         try {
-            let radius = 20000;
+            let radius = 2000;
             const catStr = categories.join(',');
             let res = {};
             do {
                 console.log("loop");
                 const urlResult = `${process.env.YELP_URL}/businesses/search?latitude=${latitude}&longitude=${longitude}&categories=${catStr}&radius=${radius}`;
+                console.log('url-request', urlResult);
                 const config = {
                 headers: {
                         Authorization: `bearer ${process.env.YELP_API_KEY}`
@@ -33,7 +34,7 @@ class Yelp {
                 };
                 res = await axios.get(urlResult, config);
                 radius = radius * 2;
-            } while (res.data.total < 10);
+            } while (res.data.total < 2);
 
             return res.data;
         } catch (e) {

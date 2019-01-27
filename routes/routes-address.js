@@ -8,8 +8,10 @@ const router = require('koa-router')(); // router middleware for koa
 const address = require('../models/address');
 
 
+// router.post('/addressToLatLong', address.addressToLatLong);
 router.post('/submitAddress', address.submitAddress);
 router.post('/getGeographicCenter', address.getGeographicCenter);
+router.post('/getRouteCenter', address.getRouteCenter);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 

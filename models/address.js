@@ -4,6 +4,7 @@ const axios = require("axios");
 
 const AddressService = require('../services/address.service');
 const YelpService = require('../services/yelp.service');
+const middle = require('./middle');
 
 class Address {
 
@@ -57,8 +58,50 @@ class Address {
       if (ctx.request.body.categories) {
         categories = ctx.request.body.categories;
       } 
+
       const filteredLocations = await YelpService.searchBusinessResultPost(geographicCenter.midLatitude, geographicCenter.midLongitude, categories);
       console.log(filteredLocations.businesses[0]);
+      
+
+      ctx.body = filteredLocations.businesses[0];
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  }
+
+  static async getRouteCenter(ctx) {
+    try {
+      const myAddress = ctx.request.body.myAddress;
+      const myZip = ctx.request.body.myZip;
+      const theirAddress = ctx.request.body.theirAddress;
+      const theirZip = ctx.request.body.theirZip;
+
+      const myRequestURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${myAddress}+${myZip}&key=${process.env.GOOGLE_MAPS_API}`;
+      const theirRequestURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${theirAddress}+${theirZip}&key=${process.env.GOOGLE_MAPS_API}`;
+      const myResults = await axios.get(myRequestURL);
+      const theirResults = await axios.get(theirRequestURL);
+      const myLatLong = myResults.data.results[0].geometry.location;
+      const theirLatLong = theirResults.data.results[0].geometry.location;
+
+      console.log(myLatLong);
+      console.log(theirLatLong);
+
+      console.log('parameters', `${myAddress} ${myZip}`, `${theirAddress} ${theirZip}`);
+
+      const routeMiddle = await middle.getRouteMiddle(ctx, `${myAddress} ${myZip}`, `${theirAddress} ${theirZip}`);
+
+      console.log('route center point:  ', routeMiddle);
+
+      // Filter locations
+      let categories = [];
+      if (ctx.request.body.categories) {
+        categories = ctx.request.body.categories;
+      }
+      console.log(routeMiddle.midLatitude); 
+      const filteredLocations = await YelpService.searchBusinessResultPost(routeMiddle.midLatitude, routeMiddle.midLongitude, categories);
+
+      // console.log(filteredLocations.businesses[0]);
       
 
       ctx.body = filteredLocations.businesses[0];
