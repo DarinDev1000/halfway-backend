@@ -22,17 +22,17 @@ const app = new Koa();
 
 app.env = process.env.ENVIRONMENT;
 
-// MySQL connection pool (set up on app initialization)
-const config = {
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT || 3306,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  charset: 'utf8mb4',
-};
+// // MySQL connection pool (set up on app initialization)
+// const config = {
+//   host: process.env.DB_HOST,
+//   port: process.env.DB_PORT || 3306,
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_DATABASE,
+//   charset: 'utf8mb4',
+// };
 
-global.connectionPool = mysql.createPool(config); // put in global to pass to sub-apps
+// global.connectionPool = mysql.createPool(config); // put in global to pass to sub-apps
 
 /* set up middleware which will be applied to each request - - - - - - - - - - - - - - - - - - -  */
 
@@ -117,9 +117,9 @@ app.use(cors());
 // set up MySQL connection - App DB
 app.use(async function mysqlConnection(ctx, next) {
   try {
-    // keep copy of ctx.state.db in global for access from models
-    ctx.state.db = global.db = await global.connectionPool.getConnection();
-    ctx.state.db.connection.config.namedPlaceholders = true;
+    // // keep copy of ctx.state.db in global for access from models
+    // ctx.state.db = global.db = await global.connectionPool.getConnection();
+    // ctx.state.db.connection.config.namedPlaceholders = true;
     // traditional mode ensures not null is respected for unsupplied fields, ensures valid JavaScript dates, etc
     await ctx.state.db.query('SET SESSION sql_mode = "TRADITIONAL"');
 
