@@ -6,6 +6,8 @@ The node server code for Halfway Mapping Project.
 
 *This program is still in development.*
 
+*This is no longer hosted on a domain.*
+
 
 ## How to use
 
