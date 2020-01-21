@@ -174,7 +174,8 @@ app.listen(process.env.PORT || 3000);
 console.info(
   `${process.version} listening on port ${process.env.PORT || 3000} (${
     app.env
-  })`
+  })
+  https://localhost:${process.env.PORT || 3000}`
 );
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
