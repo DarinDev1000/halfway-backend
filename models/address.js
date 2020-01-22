@@ -92,7 +92,8 @@ class Address {
       const routeMiddle = await middle.getRouteMiddle(ctx, `${myAddress} ${myZip}`, `${theirAddress} ${theirZip}`);
 
       console.log('route center point:  ', routeMiddle);
-
+      console.log('categories:  ', ctx.request.body.categories);
+      
       // Filter locations
       let categories = [];
       if (ctx.request.body.categories) {
