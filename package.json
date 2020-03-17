@@ -32,21 +32,21 @@
   "homepage": "https://github.com/DarinDev1000/halfway-backend#readme",
   "dependencies": {
     "@google/maps": "^0.5.5",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "bunyan": "^1.8.12",
     "dotenv": "^6.2.0",
-    "google-polyline": "^1.0.2",
-    "koa": "^2.6.2",
-    "koa-body": "^4.0.6",
+    "google-polyline": "^1.0.3",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
     "koa-bunyan": "^1.0.2",
     "koa-router": "^7.4.0",
     "koa2-cors": "^2.0.6",
-    "mysql2": "^1.6.4",
+    "mysql2": "^1.7.0",
     "polyline-encoded": "0.0.8"
   },
   "devDependencies": {
-    "eslint": "^5.12.1",
-    "nodemon": "^1.18.9",
+    "eslint": "^5.16.0",
+    "nodemon": "^1.19.4",
     "pre-git": "^3.17.1"
   },
   "release": {
