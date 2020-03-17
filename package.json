@@ -32,7 +32,7 @@
   "homepage": "https://github.com/DarinDev1000/halfway-backend#readme",
   "dependencies": {
     "@google/maps": "^0.5.5",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "bunyan": "^1.8.12",
     "dotenv": "^6.2.0",
     "google-polyline": "^1.0.2",
